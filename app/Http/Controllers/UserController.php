@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendEmailWelcomeToUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -24,7 +25,7 @@ class UserController extends Controller
                 'plan_id'=> 'integer|required'
             ]);
 
-            Mail::to($data['email'], $data['name'])->send();
+            Mail::to($data['email'], $data['name'])->send(new SendEmailWelcomeToUser);
 
             return $user;
         } catch (\Exception $exception) {
