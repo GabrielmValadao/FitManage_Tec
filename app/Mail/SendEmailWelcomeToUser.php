@@ -27,7 +27,7 @@ class SendEmailWelcomeToUser extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Send Email Welcome To User',
+            subject: 'Bem vindo ao FitManage Tech',
         );
     }
 
@@ -37,7 +37,7 @@ class SendEmailWelcomeToUser extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            html: 'emails.WelcomeUser',
         );
     }
 
