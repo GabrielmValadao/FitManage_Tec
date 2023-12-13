@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
@@ -22,6 +23,8 @@ class UserController extends Controller
                 'password' => 'string|required|min:8|max:32',
                 'plan_id'=> 'integer|required'
             ]);
+
+            Mail::to($data['email'], $data['name'])->send();
 
             return $user;
         } catch (\Exception $exception) {
