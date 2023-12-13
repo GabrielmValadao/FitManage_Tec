@@ -19,13 +19,13 @@ class UserController extends Controller
             $request->validate([
                 'name' => 'string|required|max: 255',
                 'email' => 'string|required|max:255|unique:users',
-                'date_birth' => 'date_format:YYYY-mm-dd|string|required|unique:users',
+                'date_birth' => 'date_format:Y-m-d|nullable|unique:users',
                 'cpf' => 'string|required|max:255|unique:users',
                 'password' => 'string|required|min:8|max:32',
                 'plan_id'=> 'integer|required'
             ]);
 
-            Mail::to($data['email'], $data['name'])->send(new SendEmailWelcomeToUser);
+            Mail::to('metzdorfgabriel@gmail.com', 'Gabriel Valadão')->send(new SendEmailWelcomeToUser(['name'=>'Gabriel Valadão']));
 
             return $user;
         } catch (\Exception $exception) {

@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('date_birth')->required();
-            $table->string('cpf')->required()->unique();
+            $table->date('date_birth')->nullable();
+            $table->string('cpf', 14)->nullable()->unique();
             $table->unsignedBigInteger('plan_id')->required();
             //relacionamento entre as tabelas
             $table->foreign('plan_id')->references('id')->on('plans');
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropColumn(['date_birth', 'cpf', 'plan_id']);
         });
     }
 };
