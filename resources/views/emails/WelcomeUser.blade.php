@@ -17,7 +17,7 @@
     </table>
 
 
-    <table width="100%" style="padding: 20px;" text-aling="center" background-color="#dbd5b5">
+    <table width="100%" style="padding: 20px;" text-aling="center">
         <tr>
             <td>
                 <h1 style="color: #333;">Bem-vindo, {{ $user->name }}!</h1>
