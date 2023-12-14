@@ -22,6 +22,16 @@ class AuthController extends Controller
             if(!$authenticated) {
                 return $this->error('Não autorizado, credenciais incorretas', Response::HTTP_UNAUTHORIZED);
             }
+
+            $request->user()->tokens()->delete();
+            $token = $request->user()->createToken('simple');
+            $name = $request->user()->name;
+
+            return $this->response('Autorizado', 200, [
+                'token' => $token->plainTextToken,
+                'name' => $name
+            ]);
+
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), Response::HTTP_BAD_REQUEST);
         }
