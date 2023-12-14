@@ -8,16 +8,16 @@
 
 <body style="margin: 0; padding: 0; font-family: Arial, sans-serif;">
 
-    <table width="100%" background-color="#dbd5b5" style="padding: 20px;">
+    <table width="100%" style="padding: 20px;">
         <tr>
             <td>
-                <img src="{{ 'images/logo trainsys.png' }}" alt="Logo Train Syst" style="max-width: 200px;">
+                <img src="{{ asset('images/logo trainsys.png') }}" alt="Logo Train Syst" style="width: 100%;">
             </td>
         </tr>
     </table>
 
 
-    <table width="100%" style="padding: 20px;">
+    <table width="100%" style="padding: 20px;" text-aling="center" background-color="#dbd5b5">
         <tr>
             <td>
                 <h1 style="color: #333;">Bem-vindo, {{ $user->name }}!</h1>
