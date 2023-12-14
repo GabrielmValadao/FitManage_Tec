@@ -23,7 +23,7 @@
                 <h1 style="color: #333;">Bem-vindo, {{ $user->name }}!</h1>
 
                 <p>Você se inscreveu no plano {{ $user->plan->description }}.</p>
-                <p>Este plano suporta até {{ $user->plan->limit }} alunos.</p>
+                <p>Neste plano você pode cadastrar: {{ $user->plan->limit > 0 ? $user->plan->limit: 'ilimitado número de'}} alunos.</p>
 
                 <p>Aproveite todas as vantagens do nosso serviço!</p>
             </td>
