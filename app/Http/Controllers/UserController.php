@@ -30,9 +30,9 @@ class UserController extends Controller
 
 
             $user = User::create($data);
-            $plan = Plan::all();
 
-            Mail::to($user->email, $user->name)->send(new SendEmailWelcomeToUser($user, $plan));
+
+            Mail::to($user->email, $user->name)->send(new SendEmailWelcomeToUser($user));
             return $user;
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), Response::HTTP_BAD_REQUEST);

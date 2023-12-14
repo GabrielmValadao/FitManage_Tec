@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -18,11 +19,11 @@ class SendEmailWelcomeToUser extends Mailable
      */
 
     public $user;
-    public $plan;
-    public function __construct($user, $plan)
+
+    public function __construct(User $user)
     {
-        $this->user = $user;
-        $this->plan = $plan;
+        $this->user = $user->load('plan');
+
     }
 
     /**
