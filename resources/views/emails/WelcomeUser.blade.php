@@ -11,12 +11,12 @@
     <table width="100%" background-color="#dbd5b5" style="padding: 20px;">
         <tr>
             <td>
-                <img src="https://example.com/seu-logo.png" alt="Seu Logo" style="max-width: 200px;">
+                <img src="{{ 'images/logo trainsys.png' }}" alt="Logo Train Syst" style="max-width: 200px;">
             </td>
         </tr>
     </table>
 
-    <!-- Corpo do E-mail -->
+
     <table width="100%" style="padding: 20px;">
         <tr>
             <td>
