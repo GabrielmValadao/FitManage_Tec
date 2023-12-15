@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->group(function () {
     // rotas privadas
     Route::get('dashboard', [DashboardController::class, 'index']);
+
+    Route::post('exercises', ExerciseController::class, "store");
 });
 
 // rota pública
