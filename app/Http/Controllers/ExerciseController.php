@@ -19,13 +19,15 @@ class ExerciseController extends Controller
 
             $userId = Auth::user()->id;
 
-            $exerciseRegistered = Exercise::where('user_id', $userId)->where('description', $request->input('description'))->first();
+            $exerciseRegistered = Exercise::where('user_id', $userId)->where('description', $request->description)->first();
 
             if ($exerciseRegistered) {
-                return response()->json(['error' => 'Exercício já cadastrado para este usuário!', Response::HTTP_CONFLICT]);
+                return response('Exercício já cadastrado para este usuário!', Response::HTTP_CONFLICT);
             }
+
+
             $exercise = Exercise::create([
-                'description' => $request->input('description'),
+                'description' => $request->description,
                 'user_id' => $userId,
             ]);
 

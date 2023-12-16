@@ -29,6 +29,6 @@ class DashboardController extends Controller
             'registered_students' => $remainingStudents > 20 ? $remainingStudents : 'ilimitado',
         ];
 
-        return response()->json($data, 200);
+        return response($data, 200);
     }
 }
