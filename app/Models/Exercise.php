@@ -10,4 +10,6 @@ class Exercise extends Model
     use HasFactory;
 
     protected $fillable = ['description', 'user_id'];
+
+    protected $hidden = ['created_at', 'updated_at'];
 }
