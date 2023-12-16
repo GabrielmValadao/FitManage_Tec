@@ -9,6 +9,19 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ExerciseController extends Controller
 {
+
+    public function index(Request $request)
+    {
+        $user = $request->user();
+
+        $exercises = Exercise::select('id', 'description')->where('user_id', $user->id)->orderBy(
+                'description'
+            )->get();
+
+        return $exercises;
+    }
+
+
     public function store(Request $request)
     {
         try {
