@@ -63,6 +63,11 @@ class ExerciseController extends Controller
             return response('Usuário não autorizado a deletar este exercício', Response::HTTP_FORBIDDEN);
         }
 
+        $hasWorkouts = $exercise->workouts()->exists();
+        if ($hasWorkouts) {
+            return response('Não é permitido deletar devido a treinos vinculados', Response::HTTP_CONFLICT);
+        }
+
         $exercise->delete();
         return $this->response('', Response::HTTP_NO_CONTENT);
     }
