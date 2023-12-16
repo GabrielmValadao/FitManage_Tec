@@ -9,6 +9,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ExerciseController extends Controller
 {
+
+    public function index(Request $request)
+    {
+    }
+
+
     public function store(Request $request)
     {
         try {
