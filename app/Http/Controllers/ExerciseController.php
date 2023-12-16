@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Exercise;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class ExerciseController extends Controller
@@ -16,7 +17,7 @@ class ExerciseController extends Controller
                 'description' => 'string|required|max:255'
             ]);
 
-            $userId = auth()->id();
+            $userId = Auth::user()->id;
 
             $exerciseRegistered = Exercise::where('user_id', $userId)->where('description', $request->input('description'))->first();
 
