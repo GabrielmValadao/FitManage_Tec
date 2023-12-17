@@ -50,21 +50,19 @@ class ExerciseController extends Controller
         }
     }
 
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
-
-        $user = $request->user();
 
         $exercise = Exercise::find($id);
 
         if (!$exercise) return $this->error('Exercício não encontrado', Response::HTTP_NOT_FOUND);
 
-        if ($exercise->user_id !== $user->id) {
+        if ($exercise->user_id !== Auth::id()) {
             return response('Usuário não autorizado a deletar este exercício', Response::HTTP_FORBIDDEN);
         }
 
-        $hasWorkouts = $exercise->workouts()->exists();
-        if ($hasWorkouts) {
+
+        if ($exercise->trainings()->exists()) {
             return response('Não é permitido deletar devido a treinos vinculados', Response::HTTP_CONFLICT);
         }
 
