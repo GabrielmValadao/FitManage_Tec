@@ -29,20 +29,6 @@ class StudentController extends Controller
                 'user_id' => 'integer|required'
             ]);
 
-            $user = $request->user();
-            $plan = $user->plan;
-
-            $maxStudentsCreate = $plan->limit;
-            $numberStudents = $user->students()->count();
-
-            if ($numberStudents >= $maxStudentsCreate) {
-                return response()->error('Limite de cadastro de estudante atingido', Response::HTTP_FORBIDDEN);
-            }
-
-
-
-
-
             $student = Student::create($data);
             return $student;
         } catch (\Exception $exception) {
