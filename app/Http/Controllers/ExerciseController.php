@@ -15,8 +15,8 @@ class ExerciseController extends Controller
         $user = $request->user();
 
         $exercises = Exercise::select('id', 'description')->where('user_id', $user->id)->orderBy(
-                'description'
-            )->get();
+            'description'
+        )->get();
 
         return $exercises;
     }
@@ -48,5 +48,25 @@ class ExerciseController extends Controller
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), Response::HTTP_BAD_REQUEST);
         }
+    }
+
+    public function destroy($id)
+    {
+
+        $exercise = Exercise::find($id);
+
+        if (!$exercise) return $this->error('Exercício não encontrado', Response::HTTP_NOT_FOUND);
+
+        if ($exercise->user_id !== Auth::id()) {
+            return response('Usuário não autorizado a deletar este exercício', Response::HTTP_FORBIDDEN);
+        }
+
+
+        if ($exercise->trainings()->exists()) {
+            return response('Não é permitido deletar devido a treinos vinculados', Response::HTTP_CONFLICT);
+        }
+
+        $exercise->delete();
+        return $this->response('', Response::HTTP_NO_CONTENT);
     }
 }
