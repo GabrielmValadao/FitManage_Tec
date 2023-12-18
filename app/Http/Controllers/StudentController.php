@@ -38,28 +38,6 @@ class StudentController extends Controller
         $students = $query->orderBy('name')->get();
 
         return $students;
-
-
-
-        // $search = $request->query('search');
-        // $studentId = $request->query('student_id');
-        // $query = Student::query();
-
-        // if ($search) {
-        //     $query->where(function ($students) use ($search) {
-        //         $students->where('name', 'ilike', "%$search%")
-        //             ->orWhere('cpf', 'ilike', "%$search%")
-        //             ->orwhere('email', 'ilike', "%$search%");
-        //     });
-        // }
-
-        // if ($studentId) {
-        //     $query->where('id', $studentId);
-        // }
-
-        // $students = $query->orderBy('name')->get();
-
-        // return $students;
     }
     public function store(Request $request)
     {
