@@ -12,15 +12,54 @@ class StudentController extends Controller
 
     public function index(Request $request)
     {
-        $search = $request->query('search');
 
-        $students = Student::where('name', 'ilike', "%$search%")
-            ->orWhere('cpf', 'ilike', "%$search%")
-            ->orWhere('email', 'ilike', "%$search%")
-            ->orderBy('name')
-            ->get();
+
+
+        $name = $request->query('name');
+        $email = $request->query('email');
+        $cpf = $request->query('cpf');
+
+        $query = Student::query();
+
+        if ($name || $email || $cpf) {
+            $query->where(function ($search) use ($name, $email, $cpf) {
+                if ($name) {
+                    $search->where('name', 'ilike', "%$name%");
+                }
+                if ($email) {
+                    $search->orWhere('email', 'ilike', "%$email%");
+                }
+                if ($cpf) {
+                    $search->orWhere('cpf', 'ilike', "%$cpf%");
+                }
+            });
+        }
+
+        $students = $query->orderBy('name')->get();
 
         return $students;
+
+
+
+        // $search = $request->query('search');
+        // $studentId = $request->query('student_id');
+        // $query = Student::query();
+
+        // if ($search) {
+        //     $query->where(function ($students) use ($search) {
+        //         $students->where('name', 'ilike', "%$search%")
+        //             ->orWhere('cpf', 'ilike', "%$search%")
+        //             ->orwhere('email', 'ilike', "%$search%");
+        //     });
+        // }
+
+        // if ($studentId) {
+        //     $query->where('id', $studentId);
+        // }
+
+        // $students = $query->orderBy('name')->get();
+
+        // return $students;
     }
     public function store(Request $request)
     {
