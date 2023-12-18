@@ -9,6 +9,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 class StudentController extends Controller
 {
+
+    public function index(Request $request)
+    {
+    }
     public function store(Request $request)
     {
         try {
