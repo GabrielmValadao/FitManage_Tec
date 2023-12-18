@@ -12,13 +12,30 @@ class StudentController extends Controller
 
     public function index(Request $request)
     {
-        $search = $request->query('search');
 
-        $students = Student::where('name', 'ilike', "%$search%")
-            ->orWhere('cpf', 'ilike', "%$search%")
-            ->orWhere('email', 'ilike', "%$search%")
-            ->orderBy('name')
-            ->get();
+
+
+        $name = $request->query('name');
+        $email = $request->query('email');
+        $cpf = $request->query('cpf');
+
+        $query = Student::query();
+
+        if ($name || $email || $cpf) {
+            $query->where(function ($search) use ($name, $email, $cpf) {
+                if ($name) {
+                    $search->where('name', 'ilike', "%$name%");
+                }
+                if ($email) {
+                    $search->orWhere('email', 'ilike', "%$email%");
+                }
+                if ($cpf) {
+                    $search->orWhere('cpf', 'ilike', "%$cpf%");
+                }
+            });
+        }
+
+        $students = $query->orderBy('name')->get();
 
         return $students;
     }
