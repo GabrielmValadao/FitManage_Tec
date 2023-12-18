@@ -12,6 +12,15 @@ class StudentController extends Controller
 
     public function index(Request $request)
     {
+        $search = $request->query('search');
+
+        $students = Student::where('name', 'like', "%$search%")
+            ->orWhere('cpf', 'like', "%$search%")
+            ->orWhere('email', 'like', "%$search%")
+            ->orderBy('name')
+            ->get();
+
+        return $students;
     }
     public function store(Request $request)
     {
