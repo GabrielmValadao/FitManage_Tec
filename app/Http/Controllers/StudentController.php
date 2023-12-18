@@ -14,9 +14,9 @@ class StudentController extends Controller
     {
         $search = $request->query('search');
 
-        $students = Student::where('name', 'like', "%$search%")
-            ->orWhere('cpf', 'like', "%$search%")
-            ->orWhere('email', 'like', "%$search%")
+        $students = Student::where('name', 'ilike', "%$search%")
+            ->orWhere('cpf', 'ilike', "%$search%")
+            ->orWhere('email', 'ilike', "%$search%")
             ->orderBy('name')
             ->get();
 
@@ -52,5 +52,19 @@ class StudentController extends Controller
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), Response::HTTP_BAD_REQUEST);
         }
+    }
+
+    public function destroy($id)
+    {
+        $student = Student::find($id);
+
+        if (!$student) return $this->error('Estudante não encontrado', Response::HTTP_NOT_FOUND);
+
+        if ($student->user_id !== Auth::id()) {
+            return response('Usuário não autorizado a deletar este estudante', Response::HTTP_FORBIDDEN);
+        }
+
+        $student->delete();
+        return $this->response('', Response::HTTP_NO_CONTENT);
     }
 }
