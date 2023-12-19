@@ -71,6 +71,10 @@ class StudentController extends Controller
         }
     }
 
+    public function update(Request $request, $id)
+    {
+    }
+
     public function destroy($id)
     {
         $student = Student::find($id);
