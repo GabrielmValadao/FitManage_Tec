@@ -73,6 +73,32 @@ class StudentController extends Controller
 
     public function update(Request $request, $id)
     {
+        try {
+            $data = $request->all();
+
+            $request->validate([
+                'name' => 'string|max:255|nullable',
+                'email' => 'string|max:255|nullable|unique:students',
+                'date_birth' => 'date_format:Y-m-d|nullable',
+                'contact' => 'string|max:20|nullable',
+                'cpf' => 'string|max:255|nullable|regex:/^\d{3}\.\d{3}\.\d{3}-\d{2}$|regex:/^\d{3}\d{3}\d{3}\d{2}$/|unique:students',
+                'cep' => 'string|max:20|nullable',
+                'street' => 'string|max:30|nullable',
+                'state' => 'string|max:2|nullable',
+                'neighborhood' => 'string|max:50|nullable',
+                'city' => 'string|max:50|nullable',
+                'number' => 'string|max:30|nullable',
+                'complement' => 'string|max:50|nullable'
+            ]);
+
+            $student = Student::find($id);
+            if (!$student) return $this->error('Cliente não encontrado', Response::HTTP_NOT_FOUND);
+            $student->update($data);
+
+            return $student;
+        } catch (\Exception $exception) {
+            return $this->error($exception->getMessage(), Response::HTTP_BAD_REQUEST);
+        }
     }
 
     public function destroy($id)
