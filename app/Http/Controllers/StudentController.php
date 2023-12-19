@@ -49,15 +49,15 @@ class StudentController extends Controller
                 'name' => 'string|required|max:255',
                 'email' => 'string|required|max:255|unique:students',
                 'date_birth' => 'date_format:Y-m-d|required',
-                'cpf' => 'string|required|max:255|unique:students',
+                'cpf' => 'string|required|size:11|regex:/^\d{3}\d{3}\d{3}\d{2}$|unique:students',
                 'contact' => 'string|required|max:20',
-                'cep' => 'string|nullable',
-                'street' => 'string|nullable',
-                'state' => 'string|nullable',
-                'neighborhood' => 'string|nullable',
-                'city' => 'string|nullable',
-                'number' => 'string|nullable',
-                'complement' => 'string|nullable',
+                'cep' => 'string|nullable|max:20',
+                'street' => 'string|nullable|max:30',
+                'state' => 'string|nullable|max:2',
+                'neighborhood' => 'string|nullable|max:50',
+                'city' => 'string|nullable|max:50',
+                'number' => 'string|nullable|max:30',
+                'complement' => 'string|nullable|max:50',
                 'user_id' => 'integer'
             ]);
 
