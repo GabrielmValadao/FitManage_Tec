@@ -23,6 +23,7 @@ return new class extends Migration
             $table->enum('day', ['SEGUNDA', 'TERCA', 'QUARTA', 'QUINTA', 'SEXTA', 'SABADO', 'DOMINGO']);
             $table->text('observations')->nullable();
             $table->integer('time');
+            $table->unique(['student_id', 'day']);
             $table->timestamps();
         });
     }
