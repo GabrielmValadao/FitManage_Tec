@@ -25,6 +25,10 @@ class WorkoutController extends Controller
                 'time' => 'required|integer',
             ]);
 
+            if ($request->fails()) {
+                return response('Dados inválidos', Response::HTTP_BAD_REQUEST);
+            }
+
             $existingWorkout = Workout::where('student_id', $request->student_id)->where('day', $request->day)->exists();
             if ($existingWorkout) {
                 return response('Treino já cadastrado para este dia', Response::HTTP_CONFLICT);
