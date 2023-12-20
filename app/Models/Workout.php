@@ -12,4 +12,13 @@ class Workout extends Model
     protected $fillable = ['student_id', 'exercise_id', 'repetitions', 'weight', 'break_time', 'day', 'observations', 'time'];
 
     protected $hidden = ['created_at', 'updated_at'];
+
+    protected function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
+    protected function exercise()
+    {
+        return $this->belongsTo(Exercise::class);
+    }
 }
