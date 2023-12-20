@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('students/{id}', [StudentController::class, 'destroy']);
     Route::put('students/{id}', [StudentController::class, 'update']);
 
-    Route::post('workout', [WorkoutController::class, 'store']);
+    Route::post('workouts', [WorkoutController::class, 'store']);
 });
 
 // rota pública
