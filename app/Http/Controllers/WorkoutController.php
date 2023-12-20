@@ -20,14 +20,10 @@ class WorkoutController extends Controller
                 'repetitions' => 'required|integer',
                 'weight' => 'required|numeric',
                 'break_time' => 'required|integer',
-                'day' => 'required|in:SEGUNDA,TERÇA,QUARTA,QUINTA,SEXTA,SÁBADO,DOMINGO',
+                'day' => 'required|in:SEGUNDA,TERCA,QUARTA,QUINTA,SEXTA,SABADO,DOMINGO',
                 'observations' => 'nullable|string',
                 'time' => 'required|integer',
             ]);
-
-            if ($request->fails()) {
-                return response('Dados inválidos', Response::HTTP_BAD_REQUEST);
-            }
 
             $existingWorkout = Workout::where('student_id', $request->student_id)->where('day', $request->day)->exists();
             if ($existingWorkout) {
