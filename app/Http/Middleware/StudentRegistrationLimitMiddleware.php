@@ -23,7 +23,7 @@ class StudentRegistrationLimitMiddleware
         $numberStudents = $user->students()->count();
 
         if ($numberStudents >= $maxStudentsCreate) {
-            return response()->error('Limite de cadastro de estudante atingido', Response::HTTP_FORBIDDEN);
+            return response()->json(['error' => 'Limite de cadastro de estudante atingido'], Response::HTTP_FORBIDDEN);
         }
         return $next($request);
     }
