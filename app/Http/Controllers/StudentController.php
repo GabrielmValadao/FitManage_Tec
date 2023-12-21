@@ -71,6 +71,21 @@ class StudentController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        $student = Student::find($id);
+
+        if (!$student) {
+            return $this->response('Estudante não encontrado', Response::HTTP_NOT_FOUND);
+        }
+
+        $formatStudent = [
+            'student' => $student->only(['id', 'name', 'email', 'date_birth', 'cpf', 'contact']),
+            'address' => $student->only(['cep', 'street', 'state', 'neighborhood', 'city', 'number', 'complement'])
+        ];
+        return $formatStudent;
+    }
+
     public function update(Request $request, $id)
     {
         try {
