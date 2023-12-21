@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class WorkoutController extends Controller
 {
+
+
     public function store(Request $request)
     {
 
