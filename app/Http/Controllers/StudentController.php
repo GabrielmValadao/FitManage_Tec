@@ -132,5 +132,8 @@ class StudentController extends Controller
 
     public function exportStudent(Request $request)
     {
+        $student_id = $request->input('id');
+
+        return $student_id;
     }
 }
