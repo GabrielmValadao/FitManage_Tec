@@ -130,7 +130,7 @@ class StudentController extends Controller
         return $this->response('', Response::HTTP_NO_CONTENT);
     }
 
-    public function exportStudent()
+    public function exportStudent(Request $request)
     {
     }
 }
