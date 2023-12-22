@@ -129,4 +129,8 @@ class StudentController extends Controller
         $student->delete();
         return $this->response('', Response::HTTP_NO_CONTENT);
     }
+
+    public function exportStudent()
+    {
+    }
 }
