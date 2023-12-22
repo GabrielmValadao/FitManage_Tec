@@ -154,7 +154,7 @@ class StudentController extends Controller
             return response('Estudante não encontrado', Response::HTTP_NOT_FOUND);
         }
 
-        Pdf::loadView('pdfs.studentPdf', [
+        Pdf::loadView('pdfs.studentWorkoutPdf', [
             'name' => $name,
             'exercise' => $exercise,
             'repetitions' => $repetitions,
