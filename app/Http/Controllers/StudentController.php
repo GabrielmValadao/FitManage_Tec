@@ -134,8 +134,22 @@ class StudentController extends Controller
     {
         $student_id = $request->input('id');
 
-        $student = Student::with('workouts')
+        $student = Student::with('workouts.exercise')
             ->find($student_id);
+
+        $name = $student->name;
+
+        $workoutsDay = [];
+        foreach ($student->workouts as $workout) {
+            $exercise = $workout->exercise->description;
+            $repetitions = $workout->repetitions;
+            $weight = $workout->weight;
+            $break_time = $workout->break_time;
+            $day = $workout->day;
+            $time = $workout->time;
+            $observation = $workout->observation;
+        }
+
         if (!$student) {
             return response('Estudante não encontrado', Response::HTTP_NOT_FOUND);
         }
