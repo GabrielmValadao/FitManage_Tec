@@ -134,6 +134,9 @@ class StudentController extends Controller
     {
         $student_id = $request->input('id');
 
-        return $student_id;
+        $student = Student::find($student_id);
+        if (!$student) {
+            return response('Estudante não encontrado', Response::HTTP_NOT_FOUND);
+        }
     }
 }
