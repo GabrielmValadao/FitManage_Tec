@@ -62,7 +62,7 @@ class ExerciseController extends Controller
         }
 
 
-        if ($exercise->trainings()->exists()) {
+        if ($exercise->workouts()->exists()) {
             return response('Não é permitido deletar devido a treinos vinculados', Response::HTTP_CONFLICT);
         }
 
