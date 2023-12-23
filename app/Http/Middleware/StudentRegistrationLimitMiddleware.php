@@ -19,12 +19,15 @@ class StudentRegistrationLimitMiddleware
         $user = $request->user();
         $plan = $user->plan;
 
-        $maxStudentsCreate = $plan->limit;
-        $numberStudents = $user->students()->count();
+        if ($plan->description !== 'OURO') {
+            $maxStudentsCreate = $plan->limit;
+            $numberStudents = $user->students()->count();
 
-        if ($numberStudents >= $maxStudentsCreate) {
-            return response()->json(['error' => 'Limite de cadastro de estudante atingido'], Response::HTTP_FORBIDDEN);
+            if ($numberStudents >= $maxStudentsCreate) {
+                return response()->json(['error' => 'Limite de cadastro de estudante atingido'], Response::HTTP_FORBIDDEN);
+            }
         }
+
         return $next($request);
     }
 }
