@@ -63,9 +63,12 @@ class WorkoutController extends Controller
                 'time' => 'required|integer',
             ]);
 
-            $existingWorkout = Workout::where('student_id', $request->student_id)->where('day', $request->day)->exists();
-            if ($existingWorkout) {
-                return response('Treino já cadastrado para este dia', Response::HTTP_CONFLICT);
+            $existingExercise = Workout::where('student_id', $request->student_id)
+                ->where('day', $request->day)
+                ->where('exercise_id', $request->exercise_id)
+                ->exists();
+            if ($existingExercise) {
+                return response('Exercício já cadastrado para este dia', Response::HTTP_CONFLICT);
             }
 
             $workout = Workout::create($data);
