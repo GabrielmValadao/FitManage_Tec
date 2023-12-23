@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Plan;
 use App\Models\Student;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
@@ -44,12 +45,11 @@ class StudentController extends Controller
         try {
             $data = $request->all();
 
-
             $request->validate([
                 'name' => 'string|required|max:255',
                 'email' => 'string|required|max:255|unique:students',
                 'date_birth' => 'date_format:Y-m-d|required',
-                'cpf' => 'string|required|size:11|regex:/^\d{3}\d{3}\d{3}\d{2}$|unique:students',
+                'cpf' => 'string|required|size:14|regex:/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/|unique:students',
                 'contact' => 'string|required|max:20',
                 'cep' => 'string|nullable|max:20',
                 'street' => 'string|nullable|max:30',
@@ -61,11 +61,13 @@ class StudentController extends Controller
                 'user_id' => 'integer'
             ]);
 
-            $userId = Auth::user()->id;
-            // mesclagem de dados
-            $data['user_id'] = $userId;
-            $student = Student::create($data);
-            return $student;
+            $userPlan = Auth::user()->plan;
+
+            if (in_array($userPlan->description, ['OURO', 'PRATA', 'BRONZE'])) {
+                $data['user_id'] = Auth::id();
+                $student = Student::create($data);
+                return $student;
+            }
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), Response::HTTP_BAD_REQUEST);
         }
