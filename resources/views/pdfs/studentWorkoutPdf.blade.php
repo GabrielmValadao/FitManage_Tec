@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Detalhes do Treino do Estudante - {{ name }}</title>
+    <title>Detalhes do Treino do Estudante - {{ $workoutsDay[0]['name'] }}</title>
     <style>
         table {
             border-collapse: collapse;
@@ -37,14 +37,14 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($student->workouts as $workout)
+            @foreach ($workoutsDay as $workout)
                 <tr>
-                    <td>{{ day }}</td>
-                    <td>{{ exercise }}</td>
-                    <td>{{ repetitions }}</td>
-                    <td>{{ weight }}</td>
-                    <td>{{ break_time }}</td>
-                    <td>{{ observation }}</td>
+                    <td>{{ $workout['day'] }}</td>
+                    <td>{{ $workout['exercise'] }}</td>
+                    <td>{{ $workout['repetitions'] }}</td>
+                    <td>{{ $workout['weight'] }}</td>
+                    <td>{{ $workout['break_time'] }}</td>
+                    <td>{{ $workout['observation'] }}</td>
                 </tr>
             @endforeach
         </tbody>
