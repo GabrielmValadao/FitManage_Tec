@@ -137,34 +137,27 @@ class StudentController extends Controller
         $student = Student::with('workouts.exercise')
             ->find($student_id);
 
-        $name = $student->name;
-
-        $workoutsDay = [];
-        foreach ($student->workouts as $workout) {
-            $exercise = $workout->exercise->description;
-            $repetitions = $workout->repetitions;
-            $weight = $workout->weight;
-            $break_time = $workout->break_time;
-            $day = $workout->day;
-            $time = $workout->time;
-            $observation = $workout->observation;
-        }
-
         if (!$student) {
             return response('Estudante não encontrado', Response::HTTP_NOT_FOUND);
         }
 
-        Pdf::loadView('pdfs.studentWorkoutPdf', [
-            'name' => $name,
-            'exercise' => $exercise,
-            'repetitions' => $repetitions,
-            'weight' => $weight,
-            'break_time' => $break_time,
-            'day' => $day,
-            'time' => $time,
-            'observation' => $observation
-        ]);
+        $workoutsDay = [];
+        foreach ($student->workouts as $workout) {
+            $workoutsDay[] = [
+                'name' => $student->name,
+                'exercise' => $workout->exercise->description,
+                'repetitions' => $workout->repetitions,
+                'weight' => $workout->weight,
+                'break_time' => $workout->break_time,
+                'day' => $workout->day,
+                'time' => $workout->time,
+                'observation' => $workout->observation
+            ];
+        }
 
-        return $student;
+
+        $pdf = Pdf::loadView('pdfs.studentWorkoutPdf', ['workoutsDay' => $workoutsDay]);
+
+        return $pdf->stream('treinoEstudante.pdf');
     }
 }
