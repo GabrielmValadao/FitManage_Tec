@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,7 +13,6 @@ class StudentController extends Controller
 
     public function index(Request $request)
     {
-
 
 
         $name = $request->query('name');
@@ -128,5 +128,36 @@ class StudentController extends Controller
 
         $student->delete();
         return $this->response('', Response::HTTP_NO_CONTENT);
+    }
+
+    public function exportStudent(Request $request)
+    {
+        $student_id = $request->input('id');
+
+        $student = Student::with('workouts.exercise')
+            ->find($student_id);
+
+        if (!$student) {
+            return response('Estudante não encontrado', Response::HTTP_NOT_FOUND);
+        }
+
+        $workoutsDay = [];
+        foreach ($student->workouts as $workout) {
+            $workoutsDay[] = [
+                'name' => $student->name,
+                'exercise' => $workout->exercise->description,
+                'repetitions' => $workout->repetitions,
+                'weight' => $workout->weight,
+                'break_time' => $workout->break_time,
+                'day' => $workout->day,
+                'time' => $workout->time,
+                'observation' => $workout->observation
+            ];
+        }
+
+
+        $pdf = Pdf::loadView('pdfs.studentWorkoutPdf', ['workoutsDay' => $workoutsDay]);
+
+        return $pdf->stream('treinoEstudante.pdf');
     }
 }

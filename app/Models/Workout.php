@@ -13,11 +13,11 @@ class Workout extends Model
 
     protected $hidden = ['created_at', 'updated_at'];
 
-    protected function student()
+    public function student()
     {
         return $this->belongsTo(Student::class);
     }
-    protected function exercise()
+    public function exercise()
     {
         return $this->belongsTo(Exercise::class);
     }
