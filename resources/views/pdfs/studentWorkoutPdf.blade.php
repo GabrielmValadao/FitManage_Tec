@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Detalhes do Treino do Estudante - {{ $workoutsDay[0]['name'] }}</title>
+    <title>Treino do Estudante</title>
     <style>
         table {
             border-collapse: collapse;
@@ -24,6 +24,7 @@
 </head>
 
 <body>
+    <h1>Detalhes do Treino do Estudante - {{ $workoutsDay[0]['name'] }}</h1>
 
     <table>
         <thead>
