@@ -17,18 +17,18 @@ class DashboardController extends Controller
 
         $students =  Student::where('user_id', $user->id)->count();
         $exercises =  Exercise::where('user_id', $user->id)->count();
-        $userPlan = Plan::where('user_id', $user->id)->first();
-        $limitPlan = $userPlan->limit;
+        $userPlan = $user->plan;
+        $limitPlan = ($userPlan) ? $userPlan->limit : null;
 
-        $remainingStudents = max(0, $limitPlan - $students);
+        $remainingStudents = ($limitPlan !== null) ? max(0, $limitPlan - $students) : null;
 
         $data = [
             'registered_students' => $students,
             'registered_exercises' => $exercises,
             'current_user_plan' => $userPlan->description,
-            'registered_students' => $remainingStudents > 20 ? $remainingStudents : 'ilimitado',
+            'remaining_students' => ($remainingStudents !== null && $remainingStudents > 20) ? 'ilimitado' : $remainingStudents,
         ];
 
-        return response($data, 200);
+        return $data;
     }
 }
