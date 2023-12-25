@@ -104,6 +104,8 @@ Exemplo de solicitação JSON
 | `201`           | sucesso         |
 | `400`           | dados inválidos |
 
+### Endpoint - Rota Login
+
 ### S02 - Login
 
 ```http
@@ -125,3 +127,42 @@ Exemplo de solicitação JSON
 | `token`         | retorno do numero do token, em caso de sucesso |
 | `400`           | dados inválidos                                |
 | `401`           | login inválido                                 |
+
+### Endpoint - Rota Dashboard
+
+### S03 - Dashboard
+
+```http
+  GET /api/dashboard
+```
+
+Exemplo de retorno JSON
+
+```http
+"registered_students": 1,
+  "registered_exercises": 0,
+  "current_user_plan": "PRATA",
+  "remaining_students": 19
+```
+
+### Endpoint - Rotas Exercícios
+
+### S04 - Cadastro de exercícios
+
+```http
+  POST /api/exercises
+```
+
+| Parâmetro     | Tipo     | Descrição                                                    |
+| :------------ | :------- | :----------------------------------------------------------- |
+| `id`          | `int`    | **Autoincremental**. Chave primaria                          |
+| `description` | `string` | **Obrigatório**. Nome do exercício                           |
+| `user_id`     | `string` | **Autoincremental**. Id do usuário que cadastrou o exercício |
+
+Exemplo de solicitação JSON
+
+```http
+  {
+  "description": "Pulo de corda"
+}
+```
