@@ -394,3 +394,36 @@ Exemplo de retorno JSON
 | Response Status | Descrição |
 | :-------------- | :-------- |
 | `200`           | sucesso   |
+
+### S09 - Deleção de estudante (Soft delete)
+
+```http
+  DELETE /api/students/:id
+```
+
+| Response Status | Descrição                                                                  |
+| :-------------- | :------------------------------------------------------------------------- |
+| `204`           | sucesso                                                                    |
+| `403`           | em caso do id do exercício criado, não foi criado pelo usuário autenticado |
+| `404`           | em caso do id do exercício não existir no banco de dados                   |
+
+### S10 - Atualização de um estudante
+
+```http
+  PUT /api/students/:id
+```
+
+Exemplo de solicitação JSON
+
+```http
+  {
+  {
+  "state": "MG",
+  "cep": "96810-230"
+}
+}
+```
+
+| Response Status | Descrição |
+| :-------------- | :-------- |
+| `200`           | sucesso   |
