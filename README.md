@@ -149,7 +149,7 @@ Exemplo de retorno JSON
 | :-------------- | :-------- |
 | `200`           | sucesso   |
 
-### Endpoint - Rotas Exercícios
+### Endpoints - Rotas Exercícios
 
 ### S04 - Cadastro de exercícios
 
@@ -210,3 +210,53 @@ Exemplo de retorno JSON
 | `409`           | em caso de não ser permitido deletar por haver treinos vinculados ao id do exercício |
 | `403`           | em caso do id do exercício criado, não foi criado pelo usuário autenticado           |
 | `404`           | em caso do id do exercício não existir no banco de dados                             |
+
+### Endpoints - Rotas Estudantes
+
+### S07 - Cadastro de Estudantes
+
+```http
+  POST /api/students
+```
+
+| Parâmetro      | Tipo     | Descrição                                                    |
+| :------------- | :------- | :----------------------------------------------------------- |
+| `id`           | `int`    | **Autoincremental**. Chave primaria                          |
+| `name`         | `string` | **Obrigatório**. Nome do estudante                           |
+| `email`        | `string` | **Único**. Email do estudante                                |
+| `date_birth`   | `date`   | **Opcional**. Data de aniversário do estudante               |
+| `cpf`          | `string` | **Único**. Cpf do estudante                                  |
+| `contact`      | `string` | Contato do estudante                                         |
+| `user_id`      | `int`    | **Autoincremental**. Id do usuário que cadastrou o estudante |
+| `city`         | `string` | **Opcional**. Cidade do estudante                            |
+| `neighborhood` | `string` | **Opcional**. Bairro do estudante                            |
+| `number`       | `string` | **Opcional**. Número da casa do estudante                    |
+| `street`       | `string` | **Opcional**. Rua do endereço do estudante                   |
+| `state`        | `string` | **Opcional**. Estado                                         |
+| `cep`          | `string` | **Opcional**. Cep do estudante                               |
+| `complement`   | `string` | **Opcional**. Complemento do endereço                        |
+
+Exemplo de solicitação JSON
+
+```http
+  {
+  "name": "José da silva",
+  "email": "jose@gmail.com",
+  "date_birth": "1978-02-20",
+  "cpf": "024.892.560-11",
+  "contact": "+55 51 99999-1234",
+  "cep": "96810-174",
+  "street": "Vinte e oito de setembro",
+  "state": "RS",
+  "neighborhood": "Centro",
+  "city": "Santa cruz do sul",
+  "complement": "Ao lado da loja pingo",
+  "number": "1686"
+}
+```
+
+| Response Status | Descrição                                        |
+| :-------------- | :----------------------------------------------- |
+| `201`           | sucesso                                          |
+| `400`           | dados inválidos                                  |
+| `403`           | em caso de atingir o limite de cadastro do plano |
