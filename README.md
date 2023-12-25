@@ -70,3 +70,18 @@ php artisan db:seed PopulatePlans
 ```
 
 ## Documentação da API
+
+### Endpoint - Rota Usuário
+
+### S01 - Cadastro de usuário
+
+```http
+  POST /api/users
+```
+
+| Parâmetro  | Tipo     | Descrição                           |
+| :--------- | :------- | :---------------------------------- |
+| `id`       | `int`    | **Autoincremental**. Chave primaria |
+| `name`     | `string` | **Obrigatório**. Nome do usuário    |
+| `email`    | `string` | **Obrigatório**. Email do usuário   |
+| `password` | `string` | **Obrigatório** Senha do usuário    |

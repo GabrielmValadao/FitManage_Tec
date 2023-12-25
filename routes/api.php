@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('auth:sanctum')->group(function () {
-    // rotas privadas
+
     Route::get('dashboard', [DashboardController::class, 'index']);
 
     Route::post('exercises', [ExerciseController::class, 'store']);
@@ -29,6 +29,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('students/{id}/workouts', [WorkoutController::class, 'index']);
 });
 
-// rota pública
+
 Route::post('users', [UserController::class, 'store']);
 Route::post('login', [AuthController::class, 'store']);
