@@ -549,9 +549,17 @@ Exemplo de retorno JSON
   },
 ```
 
+| Response Status | Descrição |
+| :-------------- | :-------- |
+| `200`           | sucesso   |
+
 ### S14 - Exportação de PDF
 
 GET /api/students/export?id=
 
 Exemplo de retorno do PDF
 ![PDF do treino do estudante](/public/images/pdf_treino_estudante.png)
+
+| Response Status | Descrição |
+| :-------------- | :-------- |
+| `201`           | sucesso   |
