@@ -563,3 +563,10 @@ Exemplo de retorno do PDF
 | Response Status | Descrição |
 | :-------------- | :-------- |
 | `200`           | sucesso   |
+
+## Projeto final do Módulo 2 : LAB 365 - DevinHouse: Turma Zucchetti
+
+### Autor
+
+| :--------- | :---------------------------------- |
+| <![imagem gabriel](/public/images/gabriel%20.jpg) width="50%" height="50%"/> | Gabriel Metzdorf Valadão :: [@GabrielmValadao](https://github.com/GabrielmValadao)|
