@@ -85,3 +85,43 @@ php artisan db:seed PopulatePlans
 | `name`     | `string` | **Obrigatório**. Nome do usuário    |
 | `email`    | `string` | **Obrigatório**. Email do usuário   |
 | `password` | `string` | **Obrigatório** Senha do usuário    |
+
+Exemplo de solicitação JSON
+
+```http
+  {
+    "name": "Henrique Corral",
+  "email": "henrique@gmail.com",
+  "date_birth": "1998-05-09",
+  "cpf": "024.892.561-90",
+  "password": "12345678",
+  "plan_id": 2
+}
+```
+
+| Response Status | Descrição       |
+| :-------------- | :-------------- |
+| `201`           | sucesso         |
+| `400`           | dados inválidos |
+
+### S02 - Login
+
+```http
+  POST /api/login
+```
+
+Exemplo de solicitação JSON
+
+```http
+  {
+  "email": "henrique@gmail.com",
+  "password": "12345678"
+}
+```
+
+| Response Status | Descrição                                      |
+| :-------------- | :--------------------------------------------- |
+| `200`           | sucesso                                        |
+| `token`         | retorno do numero do token, em caso de sucesso |
+| `400`           | dados inválidos                                |
+| `401`           | login inválido                                 |
