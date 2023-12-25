@@ -562,4 +562,4 @@ Exemplo de retorno do PDF
 
 | Response Status | Descrição |
 | :-------------- | :-------- |
-| `201`           | sucesso   |
+| `200`           | sucesso   |
