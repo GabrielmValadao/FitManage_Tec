@@ -260,3 +260,137 @@ Exemplo de solicitação JSON
 | `201`           | sucesso                                          |
 | `400`           | dados inválidos                                  |
 | `403`           | em caso de atingir o limite de cadastro do plano |
+
+### S08 - Listagem de Estudantes
+
+```http
+  GET /api/students
+```
+
+Exemplo de retorno JSON
+
+```http
+{
+    "id": 26,
+    "name": "Bruno Tavares",
+    "email": "bruno@gmail.com",
+    "date_birth": "1978-02-20",
+    "cpf": "024.892.560-00",
+    "contact": "+55 51 99999-9943",
+    "user_id": 28,
+    "city": "Santa cruz do sul",
+    "neighborhood": "Centro",
+    "number": "1686",
+    "street": "Vinte e oito de setembro",
+    "state": "RS",
+    "cep": "96810-174",
+    "complement": "Ao lado da loja pingo",
+    "deleted_at": null
+  },
+  {
+    "id": 24,
+    "name": "Eduardo Teixeira",
+    "email": "Eduardo@gmail.com",
+    "date_birth": "1978-02-20",
+    "cpf": "024.892.560-35",
+    "contact": "+55 51 99999-9910",
+    "user_id": 28,
+    "city": "Santa cruz do sul",
+    "neighborhood": "Centro",
+    "number": "1686",
+    "street": "Vinte e oito de setembro",
+    "state": "RS",
+    "cep": "96810-174",
+    "complement": "Ao lado da loja pingo",
+    "deleted_at": null
+  },
+  {
+    "id": 21,
+    "name": "Fellipe Teixeira",
+    "email": "fellipe@gmail.com",
+    "date_birth": "1978-02-20",
+    "cpf": "024.892.560-10",
+    "contact": "+55 51 99999-9990",
+    "user_id": 32,
+    "city": "Santa cruz do sul",
+    "neighborhood": "Centro",
+    "number": "1686",
+    "street": "Vinte e oito de setembro",
+    "state": "RS",
+    "cep": "96810-174",
+    "complement": "Ao lado da loja pingo",
+    "deleted_at": null
+  },
+  {
+    "id": 25,
+    "name": "Joana Severo",
+    "email": "joana@gmail.com",
+    "date_birth": "1978-02-20",
+    "cpf": "024.892.560-96",
+    "contact": "+55 51 99999-9900",
+    "user_id": 28,
+    "city": "Santa cruz do sul",
+    "neighborhood": "Centro",
+    "number": "1686",
+    "street": "Vinte e oito de setembro",
+    "state": "RS",
+    "cep": "96810-174",
+    "complement": "Ao lado da loja pingo",
+    "deleted_at": null
+  },
+  {
+    "id": 14,
+    "name": "João dias",
+    "email": "joao@gmail.com",
+    "date_birth": "1978-02-15",
+    "cpf": "024.892.560-90",
+    "contact": "+55 51 99999-9997",
+    "user_id": 28,
+    "city": "Santa cruz do sul",
+    "neighborhood": "Centro",
+    "number": "1686",
+    "street": "Vinte e oito de setembro",
+    "state": "MG",
+    "cep": "96810-230",
+    "complement": "Ao lado da loja pingo",
+    "deleted_at": null
+  },
+  {
+    "id": 27,
+    "name": "José da silva",
+    "email": "jose@gmail.com",
+    "date_birth": "1978-02-20",
+    "cpf": "024.892.560-11",
+    "contact": "+55 51 99999-1234",
+    "user_id": 35,
+    "city": "Santa cruz do sul",
+    "neighborhood": "Centro",
+    "number": "1686",
+    "street": "Vinte e oito de setembro",
+    "state": "RS",
+    "cep": "96810-174",
+    "complement": "Ao lado da loja pingo",
+    "deleted_at": null
+  },
+  {
+    "id": 11,
+    "name": "Marcio Haeser",
+    "email": "marcio@gmail.com",
+    "date_birth": "1978-02-10",
+    "cpf": "024.892.560-60",
+    "contact": "+55 51 99999-9999",
+    "user_id": 28,
+    "city": "Santa cruz do sul",
+    "neighborhood": "Centro",
+    "number": "1686",
+    "street": "Vinte e oito de setembro",
+    "state": "RS",
+    "cep": "96810-174",
+    "complement": "Ao lado da loja pingo",
+    "deleted_at": null
+  }
+```
+
+| Response Status | Descrição |
+| :-------------- | :-------- |
+| `200`           | sucesso   |
