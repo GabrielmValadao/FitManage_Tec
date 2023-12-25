@@ -34,6 +34,7 @@ class WorkoutController extends Controller
                 'weight' => $workout->weight,
                 'break_time' => $workout->break_time,
                 'time' => $workout->time,
+                'observations' => $workout->observations,
             ];
         };
 

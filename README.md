@@ -427,3 +427,131 @@ Exemplo de solicitação JSON
 | Response Status | Descrição |
 | :-------------- | :-------- |
 | `200`           | sucesso   |
+
+### S13 - Listagem de UM Estudante
+
+```http
+  GET /api/students/:id
+```
+
+Exemplo de retorno JSON
+
+```http
+{
+    "id": 26,
+    "name": "Bruno Tavares",
+    "email": "bruno@gmail.com",
+    "date_birth": "1978-02-20",
+    "cpf": "024.892.560-00",
+    "contact": "+55 51 99999-9943",
+    "user_id": 28,
+    "city": "Santa cruz do sul",
+    "neighborhood": "Centro",
+    "number": "1686",
+    "street": "Vinte e oito de setembro",
+    "state": "RS",
+    "cep": "96810-174",
+    "complement": "Ao lado da loja pingo",
+    "deleted_at": null
+  },
+```
+
+| Response Status | Descrição |
+| :-------------- | :-------- |
+| `200`           | sucesso   |
+
+### Endpoints - Rotas Treinos
+
+### S11 - Cadastro de Treino
+
+```http
+  POST /api/workouts
+```
+
+| Parâmetro      | Tipo    | Descrição                                                                     |
+| :------------- | :------ | :---------------------------------------------------------------------------- |
+| `id`           | `int`   | **Autoincremental**. Chave primaria                                           |
+| `student_id`   | `int`   | **Autoincremental**. Id do estudante cadastrado                               |
+| `exercise_id`  | `int`   | **Autoincremental**. Id do exercicio cadastrado                               |
+| `repetitions`  | `int`   | Número de repetições do exercício                                             |
+| `weight`       | `decim` | Peso definido para o exerício                                                 |
+| `break_time`   | `int`   | Tempo de descanso                                                             |
+| `day`          | `enum`  | Valores: 'SEGUNDA', 'TERCA', 'QUARTA', 'QUINTA', 'SEXTA', 'SABADO', 'DOMINGO' |
+| `observations` | `text`  | **Opcional**. Observação                                                      |
+| `time`         | `int`   | Tempo de exercício                                                            |
+
+Exemplo de solicitação JSON
+
+```http
+  {
+  "exercise_id": 6,
+  "student_id": 14,
+  "repetitions": 5,
+  "weight": 15.5,
+  "break_time": 1,
+  "day": "QUARTA",
+  "observations": "",
+  "time": 10
+}
+```
+
+| Response Status | Descrição                                                                            |
+| :-------------- | :----------------------------------------------------------------------------------- |
+| `201`           | sucesso                                                                              |
+| `400`           | dados inválidos                                                                      |
+| `409`           | em caso de não ser permitido deletar por haver treinos vinculados ao id do exercício |
+
+### S12 - Listagem de Treinos do Estudante
+
+```http
+  GET /api/students/:id/workouts
+```
+
+Exemplo de retorno JSON
+
+```http
+{
+   "student_id": 14,
+  "student_name": "João dias",
+  "workouts": {
+    "SEGUNDA": [],
+    "TERCA": [
+      {
+        "exercise_id": 6,
+        "repetitions": 10,
+        "weight": "50.00",
+        "break_time": 1,
+        "time": 10
+      }
+    ],
+    "QUARTA": [
+      {
+        "exercise_id": 6,
+        "repetitions": 5,
+        "weight": "15.50",
+        "break_time": 1,
+        "time": 10
+      }
+    ],
+    "QUINTA": [],
+    "SEXTA": [],
+    "SABADO": [
+      {
+        "exercise_id": 6,
+        "repetitions": 10,
+        "weight": "50.00",
+        "break_time": 1,
+        "time": 10
+      }
+    ],
+    "DOMINGO": []
+  }
+  },
+```
+
+### S14 - Exportação de PDF
+
+GET /api/students/export?id=
+
+Exemplo de retorno do PDF
+![PDF do treino do estudante](/public/images/pdf_treino_estudante.png)
