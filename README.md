@@ -204,12 +204,9 @@ Exemplo de retorno JSON
   DELETE /api/exercises/:id
 ```
 
-| Response Status                                                   | Descrição                  |
-| :---------------------------------------------------------------- | :------------------------- |
-| `204`                                                             | sucesso                    |
-| `409`                                                             | em caso de não ser         |
-| permitido deletar por haver treinos vinculados ao id do exercício |
-| `403`                                                             | em caso do id do exercício |
-| criado, não foi criado pelo usuário autenticado                   |
-| `404`                                                             | em caso do id do exercício |
-| não existir no banco de dados                                     |
+| Response Status | Descrição                                                                            |
+| :-------------- | :----------------------------------------------------------------------------------- |
+| `204`           | sucesso                                                                              |
+| `409`           | em caso de não ser permitido deletar por haver treinos vinculados ao id do exercício |
+| `403`           | em caso do id do exercício criado, não foi criado pelo usuário autenticado           |
+| `404`           | em caso do id do exercício não existir no banco de dados                             |
