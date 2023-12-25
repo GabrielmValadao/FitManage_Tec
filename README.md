@@ -63,4 +63,10 @@ Executar em seguida em um novo terminal no projeto:
 php artisan serve
 ```
 
+Por fim, executar a seed para popular o banco de dados
+
+```sh
+php artisan db:seed PopulatePlans
+```
+
 ## Documentação da API
