@@ -62,3 +62,5 @@ Executar em seguida em um novo terminal no projeto:
 ```sh
 php artisan serve
 ```
+
+## Documentação da API
