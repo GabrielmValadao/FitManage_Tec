@@ -22,6 +22,8 @@ Acesse a documentação do modelo: https://dbdiagram.io/d/FitManage_Tech-6578de3
 
 ![Modelagem Dbdiagram](/public/images/FitManage_Tech_dbdiagram.png)
 
+As branchs criadas nesse projeto, foram dividas com a execução de uma branch por atividade e algumas branchs extras para ajustes de bugs ou sintaxe do projetos
+
 ## Executando o projeto
 
 Para executarmos essa api precisaremos dos seguintes programas:
