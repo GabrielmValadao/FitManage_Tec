@@ -145,6 +145,10 @@ Exemplo de retorno JSON
   "remaining_students": 19
 ```
 
+| Response Status | Descrição |
+| :-------------- | :-------- |
+| `200`           | sucesso   |
+
 ### Endpoint - Rotas Exercícios
 
 ### S04 - Cadastro de exercícios
@@ -166,3 +170,46 @@ Exemplo de solicitação JSON
   "description": "Pulo de corda"
 }
 ```
+
+| Response Status | Descrição |
+| :-------------- | :-------- |
+| `200`           | sucesso   |
+
+### S05 - Listagem de exercícios
+
+```http
+  GET /api/exercises
+```
+
+Exemplo de retorno JSON
+
+```http
+{
+    "id": 8,
+    "description": "Pulo de corda"
+  },
+  {
+    "id": 6,
+    "description": "Supino reto"
+  }
+```
+
+| Response Status | Descrição |
+| :-------------- | :-------- |
+| `200`           | sucesso   |
+
+### S06 - Deleção de exercícios
+
+```http
+  DELETE /api/exercises/:id
+```
+
+| Response Status                                                   | Descrição                  |
+| :---------------------------------------------------------------- | :------------------------- |
+| `204`                                                             | sucesso                    |
+| `409`                                                             | em caso de não ser         |
+| permitido deletar por haver treinos vinculados ao id do exercício |
+| `403`                                                             | em caso do id do exercício |
+| criado, não foi criado pelo usuário autenticado                   |
+| `404`                                                             | em caso do id do exercício |
+| não existir no banco de dados                                     |
