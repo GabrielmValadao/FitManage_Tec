@@ -568,5 +568,4 @@ Exemplo de retorno do PDF
 
 ### Autor
 
-| :--------- | :---------------------------------- |
-| <![imagem gabriel](/public/images/gabriel%20.jpg) width="50%" height="50%"/> | Gabriel Metzdorf Valadão :: [@GabrielmValadao](https://github.com/GabrielmValadao)|
+| Gabriel Metzdorf Valadão :: [@GabrielmValadao](https://github.com/GabrielmValadao)|
